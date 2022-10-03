@@ -1,0 +1,11 @@
+---
+- name: config access switches
+  hosts: lan
+  gather_facts: no
+
+  tasks:
+
+  - name: global vlan config
+    ios_config:
+      src: /home/zach/ansible/landeployment/templates/lan/vlans.j2
+    tags: vlan

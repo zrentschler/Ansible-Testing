@@ -1,0 +1,11 @@
+{% for item in unusedinterfaces %}
+{% for ints in item.ports %}
+{% if "-" in ints|string %}
+interface range {{ ints }}
+{% else %}
+interface {{ ints }}
+{% endif %}
+  switchport
+  shutdown
+{% endfor %}
+{% endfor %}

@@ -1,0 +1,23 @@
+passiveospf:
+  - ports:
+    - 'Ethernet1/0'
+  - ports:
+    - 'Ethernet1/1'
+  - ports:
+    - 'Ethernet1/2'
+  - ports:
+    - 'Ethernet0/2'
+  - ports:
+    - 'Ethernet0/3'
+
+trunks:
+  - ports:
+    - 'Ethernet1/0 - 2'
+
+unusedinterfaces:
+  - ports:
+    - 'Ethernet1/3'
+  - ports:
+    - 'Ethernet2/0 - 3'
+  - ports:
+    - 'Ethernet3/0 - 3'

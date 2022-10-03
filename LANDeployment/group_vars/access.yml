@@ -1,0 +1,3 @@
+accessvlans:
+  native: { id: 65, stproot: dist1 }
+  unusedvlan: { id: 99, stproot: dist2 }

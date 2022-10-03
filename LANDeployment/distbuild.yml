@@ -1,0 +1,41 @@
+---
+- name: distribution switch configs
+  hosts: dist
+  gather_facts: no
+
+  tasks:
+
+    - name: vlan config
+      ios_config: 
+        src: /home/zach/ansible/landeployment/templates/dist/vlans.j2
+      tags: vlan
+
+    - name: trunk config
+      ios_config: 
+        src: /home/zach/ansible/landeployment/templates/dist/trunks.j2
+      tags: trunks
+
+    - name: svi config
+      cisco.ios.ios_config:
+        src: /home/zach/ansible/landeployment/templates/dist/svi.j2
+      tags: svi    
+
+    - name: hsrp config
+      ios_config: 
+        src: /home/zach/ansible/landeployment/templates/dist/hsrp.j2
+      tags: hsrp
+
+    - name: ospf config
+      ios_config:
+        src: /home/zach/ansible/landeployment/templates/dist/ospf.j2
+      tags: ospf
+
+    - name: interface config
+      ios_config: 
+        src: /home/zach/ansible/landeployment/templates/dist/unusedinterfaces.j2
+      tags: ints
+
+    - name: stp config
+      ios_config: 
+        src: /home/zach/ansible/landeployment/templates/dist/stp.j2
+      tags: stp

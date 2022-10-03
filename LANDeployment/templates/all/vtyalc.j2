@@ -1,0 +1,5 @@
+access-list 101 permit ip 10.0.255.0 0.0.0.255 any
+access-list 101 permit ip 10.0.10.0 0.0.0.255 any
+access-list 101 permit ip 192.168.0.0 0.0.255.255 any
+line vty 0 4
+  access-class 101 in

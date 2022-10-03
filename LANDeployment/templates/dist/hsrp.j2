@@ -1,0 +1,12 @@
+{% for host in groups['access'] %}
+{% set vlans = hostvars[host]['devicevlans'] %}
+
+{% for key,value in vlans|dictsort %}
+{% set vlans = inventory_hostname|regex_search('(\d)') %}
+interface vlan {{ value.id }}
+  standby 1 ip 10.0.{{ value.id }}.{{ hsrpip|default('254') }}
+{% if value.stproot == inventory_hostname %}
+  standby 1 preempt
+{% endif %}
+{% endfor %}
+{% endfor %}

@@ -1,0 +1,21 @@
+---
+- name: all device configs
+  hosts: all
+  gather_facts: no
+
+  tasks:
+
+    - name: vty acl config
+      ios_config: 
+        src: /home/zach/ansible/landeployment/templates/all/vtyacl.j2
+      tags: vtyacl
+
+    - name: ntp config
+      ios_config: 
+        src: /home/zach/ansible/landeployment/templates/all/ntp.j2
+      tags: ntp
+
+    - name: cdp config
+      ios_config: 
+        src: /home/zach/ansible/landeployment/templates/all/cdp.j2
+      tags: cdp

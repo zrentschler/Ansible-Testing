@@ -1,0 +1,15 @@
+{% if 'dist' in group_names %}
+
+{% for host in groups['access'] %}
+{% set vlans = hostvars[host]['devicevlans'] %}
+{% for key,value in vlans|dictsort %}
+vlan {{ value.id }}
+  name {{ key }}
+{% endfor %}
+
+{% for key,value in accessvlans|dictsort %}
+vlan {{ value.id }}
+  name {{ key }}
+{% endfor %}
+{% endfor %}
+{% endif %}

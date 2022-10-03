@@ -1,0 +1,36 @@
+devicevlans:
+  netadmin: { id: 20, mask: 255.255.255.0, stproot: dist1 }
+  accounting: { id: 10, mask: 255.255.255.0, stproot: dist2 }
+vlans: "{{ devicevlans|combine(accessvlans) }}"
+
+passiveospf:
+  - port:
+    - 'Ethernet0/2'
+  - port:
+    - 'Ethernet0/3'
+  - port:
+    - 'Ethernet1/1'
+
+accessports:
+  - ports:
+    - 'Ethernet0/2'
+    vlan: netadmin
+  - ports:
+    - 'Ethernet0/3'
+    vlan: accounting
+  - ports: 
+    - 'Ethernet1/2 - 3'
+    vlan: unusedvlan
+  - ports:
+    - 'Ethernet2/0 - 3'
+    vlan: unusedvlan
+  - ports:
+    - 'Ethernet3/0 - 3'
+    vlan: unusedvlan
+
+trunks:
+  - ports:
+    - 'Ethernet0/0'
+    - 'Ethernet0/1'
+    
+allowed_vlans: "{{ vlans.values()|map(attribute='id')|list|join(',') }}"

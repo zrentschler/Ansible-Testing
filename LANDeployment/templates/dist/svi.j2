@@ -1,0 +1,15 @@
+{% for host in groups['access'] -%}
+{% set vlans = hostvars[host]['devicevlans'] %}
+
+{% for key,value in vlans|dictsort %}
+{% set hostbit = inventory_hostname|regex_search('(\d)') %}
+interface vlan{{ value.id }}
+   description {{ key }}
+   ip address 10.0.{{ value.id }}.{{ hostbit }} {{ value.mask }}
+   no shut
+router ospf 1
+  network 10.0.{{ value.id }}.0 0.0.0.3 area 1
+  area 1 range 10.0.0.0 255.255.128.0
+{% endfor %}
+
+{% endfor %}

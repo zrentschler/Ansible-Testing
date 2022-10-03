@@ -1,0 +1,27 @@
+{% if 'dist' in group_names %}
+{% for host in groups['access'] %} 
+{% set vlans = hostvars[host]['devicevlans'] %}
+spanning-tree mode rapid-pvst 
+{% for key,value in vlans|dictsort %}
+{% if value.stproot == inventory_hostname %}
+spanning-tree vlan {{ value.id }} priority 4096
+{% else %}
+spanning-tree vlan {{ value.id }} priority 8192
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+{% for host in groups['access'] %}
+{% set nativevlan = hostvars[host]['accessvlans'] %}
+
+{% for key,value in nativevlan|dictsort %}
+{% if value.stproot == inventory_hostname %}
+spanning-tree vlan {{ value.id }} priority 4096
+{% else %}
+spanning-tree vlan {{ value.id }} priority 8192
+{% endif %}
+{% endfor %}
+
+{% endfor %}
+
+{% endif %}

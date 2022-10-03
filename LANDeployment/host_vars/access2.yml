@@ -1,0 +1,40 @@
+devicevlans:
+  marketing: { id: 30, mask: 255.255.255.0, stproot: dist1 }
+  humanresources: { id: 40, mask: 255.255.255.0, stproot: dist2 }
+vlans: "{{ devicevlans|combine(accessvlans) }}"
+
+passiveospf:
+  - port:
+    - 'Ethernet0/2'
+  - port:
+    - 'Ethernet0/3'
+  - port:
+    - 'Ethernet1/1'
+
+accessports:
+  - ports:
+    - 'Ethernet0/2'
+    vlan: humanresources
+  - ports:
+    - 'Ethernet0/3'
+    vlan: marketing
+  - ports:
+    - 'Ethernet1/2 - 3'
+    vlan: unusedvlan
+  - ports:
+    - 'Ethernet1/2 - 3'
+    vlan: unusedvlan
+  - ports:
+    - 'Ethernet2/0 - 3'
+    vlan: unusedvlan
+  - ports:
+    - 'Ethernet3/0 - 3'
+    vlan: unusedvlan
+
+trunks:
+  - ports:
+    - 'Ethernet0/0'
+    - 'Ethernet0/1'
+
+allowed_vlans: "{{ vlans.values()|map(attribute='id')|list|join(',') }}"
+

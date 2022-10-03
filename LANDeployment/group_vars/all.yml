@@ -1,0 +1,11 @@
+ansible_network_os: ios
+ansible_connection: network_cli
+ansible_user: user
+ansible_password: pass
+ansible_become: yes
+ansible_become_method: enable
+ansible_become_password: pass
+
+ntpserver: 10.0.255.1
+ntpkey: ntppass
+domain: domain.name

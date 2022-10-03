@@ -1,0 +1,23 @@
+[access]
+access1 ansible_host=10.0.255.38
+access2 ansible_host=10.0.255.42
+access3 ansible_host=10.0.255.46
+
+[dist]
+dist1 ansible_host=10.0.255.14
+dist2 ansible_host=10.0.255.22
+
+[core]
+core1 ansible_host=10.0.255.6
+core2 ansible_host=10.0.255.2
+
+[wan]
+wan1 ansible_host=10.0.255.1
+
+[lan:children]
+access
+dist
+
+[network:children]
+lan
+wan

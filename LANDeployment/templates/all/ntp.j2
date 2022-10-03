@@ -1,0 +1,14 @@
+{% if 'dist' or 'access' in group_names %}
+ntp server {{ ntpserver }}
+ntp authenticate
+ntp authentication-key 15 md5 {{ ntpkey }}
+ntp trusted-key 15
+{% endif %}
+
+{% if 'wan' in group_names %}
+ntp master 3
+ntp authenticate
+ntp authentication-key 15 md5 {{ ntpkey }}
+ntp trusted-key 15
+
+{% endif %}

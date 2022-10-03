@@ -1,0 +1,19 @@
+{% for item in trunks %}
+
+{% for trunk in item.ports %}
+{% if "-" in trunk|string %}
+interface range {{ trunk }}
+{% else %}
+interface {{ trunk }}
+{% endif %}
+  switchport trunk encapsulation dot1q
+  switchport mode trunk
+  switchport trunk native vlan {{ accessvlans['native'].id }}
+  switchport trunk allowed vlan {{ allowed_vlans|default('all') }}
+  no shut
+  {% if item.group is defined %}
+  channel-group {{ item.group }} mode on
+  {% endif %}
+{% endfor %}
+
+{% endfor %}

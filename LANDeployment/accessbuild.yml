@@ -1,0 +1,30 @@
+---
+- name: config access switches
+  hosts: access
+  gather_facts: no
+
+  tasks:
+  - name: vlan config
+    cisco.ios.ios_config:
+      src: /home/zach/ansible/landeployment/templates/access/vlans.j2
+    tags: accessports    
+
+  - name: accessport config
+    cisco.ios.ios_config:
+      src: /home/zach/ansible/landeployment/templates/access/accessports.j2
+    tags: accessports    
+
+  - name: trunk config
+    cisco.ios.ios_config:
+      src: /home/zach/ansible/landeployment/templates/access/trunks.j2
+    tags: trunks    
+
+  - name: passive ospf config
+    ios_config: 
+      src: /home/zach/ansible/landeployment/templates/access/ospf.j2
+    tags: passiveospf
+
+  - name: stp config
+    ios_config:
+      src: /home/zach/ansible/landeployment/templates/access/stp.j2
+    tags: stp

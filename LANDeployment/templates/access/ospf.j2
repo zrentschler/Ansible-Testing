@@ -1,0 +1,7 @@
+{% for item in passiveospf %}
+{% for ospfport in item.port %}
+router ospf 1
+  passive-interface {{ ospfport }}
+{% endfor %}
+{% endfor %}
+zach@zach:~/an

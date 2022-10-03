@@ -1,0 +1,8 @@
+accessvlans:
+  native:
+    id: 65
+    stproot: dist1
+  unusedvlan:
+    id: 99
+
+hsrpip: 120
