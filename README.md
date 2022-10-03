@@ -2,6 +2,6 @@ This is a work in project which uses Ansible to provision a simple 3 tiered netw
 
 Because I'm hosting GNS3 on the same server I'm running Ansible on I have to use the cloud module to pass through Ansible's SSH connections. 
 
-For the same reason I've also included routed links from dist1 to all the access etherswitches in order to manage them with Ansible instead of connecting all devices to a management switch. A switch installed between the cloud module and the GNS3 network caused frames to indefinitely between my server and the network, crashing GNS3.
+For the same reason I've also included routed links from dist1 to all the access etherswitches in order to manage them with Ansible instead of connecting all devices to a management switch. A switch installed between the cloud module and the GNS3 network caused frames to loop, indefinitely, between my server and the network, crashing GNS3.
 
 ![topology](https://i.imgur.com/UdM2Q37.png)
