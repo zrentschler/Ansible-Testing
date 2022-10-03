@@ -1,4 +1,4 @@
-This is a work in project which uses Ansible templates to provision a simple 3 tiered network according to Cisco's high avaliability campus LAN guidelines, found [here](https://www.cisco.com/c/en/us/td/docs/solutions/Enterprise/Campus/HA_campus_DG/hacampusdg.html).
+This is a work in project which uses Ansible templates to provision a simple 3 tiered network according to Cisco's high availability campus LAN guidelines, found [here](https://www.cisco.com/c/en/us/td/docs/solutions/Enterprise/Campus/HA_campus_DG/hacampusdg.html).
 
 Because I'm hosting GNS3 on the same server I'm running Ansible on I have to use the cloud module to pass through Ansible's SSH connections. 
 
